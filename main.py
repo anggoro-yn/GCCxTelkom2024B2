@@ -249,11 +249,14 @@ category_counts = df['Kategori'].value_counts().sort_index()
 category_counts.loc['0%'] = (df['Progress Belajar Percentage'] == 0).sum()
 
 # Membuat pie chart
-plt.figure(figsize=(10, 7))
-plt.pie(category_counts, labels=category_counts.index, autopct='%1.1f%%', startangle=140)
-plt.title("Distribusi Kategori Progress Belajar Peserta")
-plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-plt.show()
+fig, ax = plt.subplots(figsize=(10, 7))
+ax.pie(category_counts, labels=category_counts.index, autopct='%1.1f%%', startangle=140)
+ax.set_title("Distribusi Kategori Progress Belajar Peserta")
+ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+# Tampilkan pie chart di Streamlit
+st.pyplot(fig)
+
 
 
 
