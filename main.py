@@ -9,6 +9,7 @@ st.write("Test1")
 data = pd.read_csv('data.csv', delimiter=';')
 
 st.write("Test2")
+st.write(data)
 
 # Mapping dari kode fasilitator ke nama fasilitator
 fasilitator_mapping = {
