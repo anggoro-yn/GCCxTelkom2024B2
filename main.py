@@ -231,6 +231,10 @@ st.plotly_chart(fig_pie_completion)
 
 
 df = data
+
+# Menghapus tanda persentase dan mengkonversi ke numerik 
+df['Progress Belajar Percentage'] = df['Progress Belajar Percentage'].str.replace('%', '').astype(float
+
 # Mendefinisikan kategori
 bins = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100]
 labels = ['>0% - 12.5%', '>12.5% - 25%', '>25% - 37.5%', '>37.5% - 50%', '>50% - 62.5%', '>62.5% - 75%', '>75% - 87.5%', '>87.5% - 100%']
