@@ -228,7 +228,7 @@ fig_pie_completion = px.pie(
 )
 st.plotly_chart(fig_pie_completion)
 
-
+st.write("test pie chart lama")
 
 df = data
 
@@ -259,6 +259,7 @@ plt.show()
 
 
 
+st.write("test pie chart baru")
 
 
 
