@@ -79,12 +79,13 @@ data['Kelompok Fasilitator'] = data['Kelompok Fasilitator'].map(fasilitator_mapp
 
 # Pastikan semua nilai dalam kolom 'Kelompok Fasilitator' adalah tipe string
 data['Kelompok Fasilitator'] = data['Kelompok Fasilitator'].astype(str)
-
+st.write("Test4")
 # Sidebar for facilitator selection
 st.sidebar.header('Filter Fasilitator')
 fasilitator_options = ['Semua'] + sorted(data['Kelompok Fasilitator'].unique().tolist())
 selected_fasilitator = st.sidebar.selectbox('Pilih Kelompok Fasilitator:', fasilitator_options)
 
+st.write("Test5")
 # <Tambahan
 
 # Menghitung persentase kelulusan per kelompok fasilitator (TIDAK dipengaruhi oleh pemilihan)
@@ -95,13 +96,13 @@ total_counts = data.groupby('Kelompok Fasilitator')['Total Course yang Sudah Dis
 
 # Menghitung persentase
 persentase_kelulusan = (kelulusan_counts / total_counts * 100).fillna(0).round(2)
-
+st.write("Test6")
 # Mengubah ke DataFrame untuk tampilan tabel
 kelulusan_df = pd.DataFrame({
     'Nama Fasilitator': persentase_kelulusan.index,
     'Persentase Kelulusan (%)': persentase_kelulusan.values
 }).reset_index(drop=True)
-
+st.write("Test7")
 # Mengurutkan DataFrame dari persentase tertinggi ke terendah
 # kelulusan_df.sort_values(by='Persentase Kelulusan (%)', ascending=False, inplace=True)
 
