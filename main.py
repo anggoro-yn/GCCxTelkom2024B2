@@ -4,8 +4,10 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 
 st.write("Test1")
+
 # Load dataset
 data = pd.read_csv('data.csv', delimiter=';')
+
 st.write("Test2")
 
 # Mapping dari kode fasilitator ke nama fasilitator
