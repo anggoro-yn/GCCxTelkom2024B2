@@ -241,7 +241,7 @@ labels = ['>0% - 20%', '>20% - 40%', '>40% - 60%', '>60% - 80%', '>80% - 100%']
 
 # Mengelompokkan data ke dalam kategori
 df['Kategori'] = pd.cut(df['Progress Belajar Percentage'], bins=bins, labels=labels, include_lowest=True)
-
+st.write(df)
 # Menghitung jumlah peserta dalam setiap kategori
 category_counts = df['Kategori'].value_counts().sort_index()
 
