@@ -122,7 +122,7 @@ st.title('Visualisasi Kelulusan dan Progress Peserta')
 st.header('Selamat kepada peserta berikut yang telah menyelesaikan seluruh course')
 
 # Filter peserta yang telah menyelesaikan 8 course
-completed_all_courses = data[data['Progress Belajar Percentage'] == '100%']['Name'].tolist()
+completed_all_courses = data[data['Progress Belajar Percentage'] == '100%']['Nama'].tolist()
 
 # Display the names of participants who completed all courses
 jumlah = len(completed_all_courses)
