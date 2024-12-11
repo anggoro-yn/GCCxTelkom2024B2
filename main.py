@@ -236,8 +236,8 @@ df = data
 df['Progress Belajar Percentage'] = df['Progress Belajar Percentage'].str.replace('%', '').astype(float)
 
 # Mendefinisikan kategori
-bins = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100]
-labels = ['>0% - 12.5%', '>12.5% - 25%', '>25% - 37.5%', '>37.5% - 50%', '>50% - 62.5%', '>62.5% - 75%', '>75% - 87.5%', '>87.5% - 100%']
+bins = [0, 20, 40, 60, 80, 100]
+labels = ['>0% - 20%', '>20% - 40%', '>40% - 60%', '>60% - 80%', '>80% - 100%']
 
 # Mengelompokkan data ke dalam kategori
 df['Kategori'] = pd.cut(df['Progress Belajar Percentage'], bins=bins, labels=labels, include_lowest=True)
