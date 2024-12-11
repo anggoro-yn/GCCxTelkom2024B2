@@ -3,8 +3,10 @@ import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 
+st.write("Test")
 # Load dataset
 data = pd.read_csv('data.csv', delimiter=';')
+st.write("Test")
 
 # Mapping dari kode fasilitator ke nama fasilitator
 fasilitator_mapping = {
@@ -67,6 +69,7 @@ fasilitator_mapping = {
     'IA01': 'IT Automation - Marcel Aditya Pamungkas',
     'IA02': 'IT Automation - Mario Angelo Prabawa'
 }
+st.write("Test")
 
 
 # Gantikan kode fasilitator dengan nama fasilitator
