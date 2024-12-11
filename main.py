@@ -90,7 +90,7 @@ st.write("Test5")
 
 # Menghitung persentase kelulusan per kelompok fasilitator (TIDAK dipengaruhi oleh pemilihan)
 kelulusan_counts = data.groupby('Kelompok Fasilitator')['Progress Belajar Percentage'].apply(
-    lambda x: (x == 100%).sum()
+    lambda x: (x == '100%').sum()
 )
 st.write("Test5.1")
 total_counts = data.groupby('Kelompok Fasilitator')['Jumlah Course yang Telah Diselesaikan'].count()
