@@ -228,6 +228,38 @@ fig_pie_completion = px.pie(
 )
 st.plotly_chart(fig_pie_completion)
 
+
+
+df = data
+# Mendefinisikan kategori
+bins = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100]
+labels = ['>0% - 12.5%', '>12.5% - 25%', '>25% - 37.5%', '>37.5% - 50%', '>50% - 62.5%', '>62.5% - 75%', '>75% - 87.5%', '>87.5% - 100%']
+
+# Mengelompokkan data ke dalam kategori
+df['Kategori'] = pd.cut(df['Progress Belajar Percentage'], bins=bins, labels=labels, include_lowest=True)
+
+# Menghitung jumlah peserta dalam setiap kategori
+category_counts = df['Kategori'].value_counts().sort_index()
+
+# Menambahkan kategori 0% secara manual
+category_counts.loc['0%'] = (df['Progress Belajar Percentage'] == 0).sum()
+
+# Membuat pie chart
+plt.figure(figsize=(10, 7))
+plt.pie(category_counts, labels=category_counts.index, autopct='%1.1f%%', startangle=140)
+plt.title("Distribusi Kategori Progress Belajar Peserta")
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.show()
+
+
+
+
+
+
+
+
+
+
 # Distribusi status progress peserta (Pie chart)
 st.header('3. Status Progress Peserta')
 
