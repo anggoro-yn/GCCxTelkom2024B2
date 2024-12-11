@@ -93,10 +93,10 @@ kelulusan_counts = data.groupby('Kelompok Fasilitator')['Progress Belajar Percen
     lambda x: (x == '100%').sum()
 )
 st.write("Test5.1")
-st.write('kelulusan_count')
+st.write(kelulusan_count)
 total_counts = data.groupby('Kelompok Fasilitator')['Jumlah Course yang Telah Diselesaikan'].count()
 st.write("Test5.5")
-st.write('total_count')
+st.write(total_count)
 # Menghitung persentase
 persentase_kelulusan = (kelulusan_counts / total_counts * 100).fillna(0).round(2)
 st.write("Test6")
