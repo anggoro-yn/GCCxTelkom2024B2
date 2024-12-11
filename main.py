@@ -168,6 +168,7 @@ else:
 #    st.write("Belum ada peserta yang menyelesaikan seluruh course.")
 
 # Tingkat kelulusan per course (Bar chart)
+note01 = '''
 st.header('1. Tingkat Kelulusan per Course')
 
 course_columns = [
@@ -191,12 +192,14 @@ fig_bar = px.bar(
     title='Tingkat Kelulusan per Course'
 )
 st.plotly_chart(fig_bar)
+'''
+
 
 # Tingkat penyelesaian peserta (Pie chart)
 st.header('2. Tingkat Penyelesaian Peserta')
 
 # Calculate completion rates for participants based on the number of completed courses
-completion_counts = data['Total Course yang Sudah Diselesaikan'].value_counts().sort_index()
+completion_counts = data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
 completion_labels = [f'{i} Course' for i in completion_counts.index]
 
 # Define color map to match each label
