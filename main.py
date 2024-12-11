@@ -8,21 +8,66 @@ data = pd.read_csv('data.csv', delimiter=';')
 
 # Mapping dari kode fasilitator ke nama fasilitator
 fasilitator_mapping = {
-    'C01': 'Aditya Firman Nugroho',
-    'C02': 'Adrianus Yoga Arsa Sadana',
-    'C03': 'Affandy Murad',
-    'C04': 'Dimas Pramudya Haqqi',
-    'C05': 'Anggoro Yudho Nuswantoro',
-    'C06': 'Cosmas Sakristiandio',
-    'C07': 'Andrew Benedictus Jamesie',
-    'C08': 'Heri Prastio',
-    'C09': 'Jajang Jamaludin',
-    'C10': 'Lutfi Kiki Fuadi',
-    'C11': 'Mufti AlieSatriawan',
-    'C12': 'Ricky Fahriza',
-    'C13': 'Roby Ismail Adi Putraq',
-    'C14': 'Yeheskiel Almasar Tampubolon'
+    'DA01': 'Data Analytics - Adib Ahmad Istiqlal'
+    'DA02': 'Data Analytics - Affan Ikhsan'
+    'DA03': 'Data Analytics - Andrew Benedictus Jamesie'
+    'DA04': 'Data Analytics - Bramantio Galih Arintoko'
+    'DA05': 'Data Analytics - Camelia Regista '
+    'DA06': 'Data Analytics - Cindy Steffani'
+    'DA07': 'Data Analytics - Eka Dwi Sariningsih'
+    'DA08': 'Data Analytics - Fariz Fadila'
+    'DA09': 'Data Analytics - Giselle Halim'
+    'DA10': 'Data Analytics - Halim sajidi'
+    'DA11': 'Data Analytics - Ida Sri Afiqah'
+    'DA12': 'Data Analytics - Irfan Rizqulloh'
+    'DA13': 'Data Analytics - Lutfi Herdiansyah Ws'
+    'DA14': 'Data Analytics - Yayang Dwijayani Panggi'
+    'DA15': 'Data Analytics - Bagus Akhlaq'
+    'PM01': 'Project Management - Anggoro Yudho Nuswantoro'
+    'PM02': 'Project Management - Cynthia Caroline'
+    'PM03': 'Project Management - Fadasa Rizki Barata'
+    'PM04': 'Project Management - Mufti Alie Satriawan'
+    'PM05': 'Project Management - Muhammad Ali Umar'
+    'PM06': 'Project Management - Muhammad Faris Afif Putra'
+    'PM07': 'Project Management - Rahma Rizky Alifia'
+    'PM08': 'Project Management - Roby Ismail Adi Putra'
+    'PM09': 'Project Management - Wandi Oktapiadi'
+    'PM10': 'Project Management - Togihon Josia Paber Simaremare'
+    'PM11': 'Project Management - Andrey Prabowo'
+    'PM12': 'Project Management - Anita Fitriyawati'
+    'IS01': 'IT Support - Fauzia Anis Sekar Ningrum'
+    'IS02': 'IT Support - Jajang Jamaludin'
+    'IS03': 'IT Support - Kanaya Novivian Tabitha Angel'
+    'UX01': 'UX Design - Hafizh Daffa Septianto'
+    'UX02': 'UX Design - Maulana Akbar Kusuma'
+    'UX03': 'UX Design - Muhamad Ibnu Farizky'
+    'UX04': 'UX Design - Nisa Fatimatuz Zahro'
+    'AD01': 'Advanced Data Analytics - Alif Khusain Bilfaqih'
+    'AD02': 'Advanced Data Analytics - Erik Feri Fadli'
+    'AD03': 'Advanced Data Analytics - Muhammad Aliif Nurrahman'
+    'AD04': 'Advanced Data Analytics - Muhammad Sahrul'
+    'AD05': 'Advanced Data Analytics - Rais Sulaiman Rusid'
+    'AD06': 'Advanced Data Analytics - Yosriko Rahmat Karoni Sabelekake'
+    'BI01': 'Business Intelligence - Darmawan Kristiaji'
+    'BI02': 'Business Intelligence - Muhamad Ihsan Ashari'
+    'BI03': 'Business Intelligence - Muhammad Fahmy Fakhrija'
+    'BI04': 'Business Intelligence - Yonvi Satria'
+    'CS01': 'Cybersecurity - Adrianus Yoga Arsa Sadana'
+    'CS02': 'Cybersecurity - Arif Mulyono'
+    'CS03': 'Cybersecurity - Daffa akhdan Fadhillah '
+    'CS04': 'Cybersecurity - Hendrik Roland Hutapea'
+    'CS05': 'Cybersecurity - Affandy Murad'
+    'DM01': 'Digital Marketing - Muhammad Rizqi Adha'
+    'DM02': 'Digital Marketing - Azzam Fitra Nuraiman'
+    'DM03': 'Digital Marketing - Ghalda Khairunnisa'
+    'DM04': 'Digital Marketing - Wahyu Nudiya'
+    'DM05': 'Digital Marketing - Trio Sellin Nur Kholis '
+    'DM06': 'Digital Marketing - Raffa Arya Nugraha'
+    'DM07': 'Digital Marketing - Arijal Ibnu Jati'
+    'IA01': 'IT Automation - Marcel Aditya Pamungkas'
+    'IA02': 'IT Automation - Mario Angelo Prabawa'
 }
+
 
 # Gantikan kode fasilitator dengan nama fasilitator
 data['Kelompok Fasilitator'] = data['Kelompok Fasilitator'].map(fasilitator_mapping)
