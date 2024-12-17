@@ -187,9 +187,9 @@ courses_data.index.name = 'Courses'
 # Create a bar chart
 fig, ax = plt.subplots()
 courses_data.plot(kind='bar', ax=ax)
-ax.set_xlabel('Jumlah Course yang Telah Diselesaikan')
+ax.set_xlabel('Courses')
 ax.set_ylabel('Jumlah Peserta')
-ax.set_title('Jumlah Peserta per Jumlah Course yang Telah Diselesaikan')
+ax.set_title('Jumlah Kelulusan Per Course')
 
 # Display the bar chart in Streamlit
 st.title('Jumlah Peserta Berdasarkan Jumlah Course yang Telah Diselesaikan (Tanpa Peserta yang Belum Menyelesaikan Kursus)')
