@@ -189,8 +189,7 @@ courses_data = pd.DataFrame({
     'Number_of_students_completed': number_of_students_completed
 })
 
-# Display the DataFrame
-print(courses_data)
+st.write(courses_data)
 
 
 
