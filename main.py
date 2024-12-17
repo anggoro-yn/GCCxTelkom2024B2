@@ -183,13 +183,15 @@ for course in courses:
     count = sum(filtered_data['Jumlah Course yang Telah Diselesaikan'] >= course)
     number_of_students_completed.append(count)
 
-# Create the DataFrame
-courses_data = pd.DataFrame({
-    'Courses': courses,
-    'Number_of_students_completed': number_of_students_completed
-})
+# Create the Series
+courses_data = pd.Series(data=number_of_students_completed, index=courses, name="Number_of_students_completed")
 
+# Rename the index to 'Courses'
+courses_data.index.name = 'Courses'
+
+# Display the Series
 st.write(courses_data)
+
 
 
 
