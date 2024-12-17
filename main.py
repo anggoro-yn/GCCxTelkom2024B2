@@ -273,8 +273,8 @@ st.plotly_chart(fig_pie_completion)
 st.header('4. Daftar Peserta dan Tingkat Penyelesaian')
 
 # Display a table with participants' names and their course completion status
-completion_table = data[['Name', 'Jumlah Course yang Telah Diselesaikan']].sort_values(by='Jumlah Course yang Telah Diselesaikan', ascending=False)
-completion_table = completion_table.rename(columns={'Name': 'Nama Peserta', 'Jumlah Course yang Telah Diselesaikan': 'Jumlah Course yang Diselesaikan'})
+completion_table = data[['Nama', 'Jumlah Course yang Telah Diselesaikan']].sort_values(by='Jumlah Course yang Telah Diselesaikan', ascending=False)
+completion_table = completion_table.rename(columns={'Nama': 'Nama Peserta', 'Jumlah Course yang Telah Diselesaikan': 'Jumlah Course yang Diselesaikan'})
 st.dataframe(completion_table)
 
 # Menampilkan tabel
