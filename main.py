@@ -167,32 +167,6 @@ course_columns = [
 # Filter data to exclude participants with 0 completed courses
 filtered_data = data[data['Jumlah Course yang Telah Diselesaikan'] > 0]
 
-# Create a list of course counts (1 to 6)
-courses = list(range(1, 7))
-
-# Initialize the 'Number_of_students_completed' list
-number_of_students_completed = []
-
-# Calculate the number of students completed for each course count
-for course in courses:
-    count = sum(filtered_data['Jumlah Course yang Telah Diselesaikan'] >= course)
-    number_of_students_completed.append(count)
-
-# Create the Series
-courses_data = pd.Series(data=number_of_students_completed, index=courses, name="Number_of_students_completed")
-
-# Rename the index to 'Courses'
-courses_data.index.name = 'Courses'
-
-# Create a bar chart
-fig, ax = plt.subplots()
-courses_data.plot(kind='bar', ax=ax)
-ax.set_xlabel('Courses')
-ax.set_ylabel('Jumlah Peserta')
-ax.set_title('Jumlah Kelulusan Per Course')
-
-# Display the bar chart in Streamlit
-st.pyplot(fig)
 
 
 
