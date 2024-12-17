@@ -110,10 +110,9 @@ st.title('Visualisasi Kelulusan dan Progress Peserta')
 
 # Daftar peserta yang telah menyelesaikan seluruh course
 st.header('Selamat kepada peserta berikut yang telah menyelesaikan seluruh course')
-st.write("test 1")
+
 # Filter peserta yang telah menyelesaikan 6 course
 completed_all_courses = data[data['Jumlah Course yang Telah Diselesaikan'] == 6]['Nama'].tolist()
-st.write("test 2")
 
 # Display the names of participants who completed all courses
 jumlah = len(completed_all_courses)
@@ -151,16 +150,6 @@ if completed_all_courses:
 else:
     st.write("Belum ada peserta yang menyelesaikan seluruh course.")
 
-st.write("test 3")
-
-
-# Display the names of participants who completed all courses
-#if completed_all_courses:
-#    for name in completed_all_courses:
-#        st.write(f"- {name}")
-#else:
-#    st.write("Belum ada peserta yang menyelesaikan seluruh course.")
-
 # Tingkat kelulusan per course (Bar chart)
 st.header('1. Tingkat Kelulusan per Course')
 
@@ -174,6 +163,30 @@ course_columns = [
     'Automate Cybersecurity Tasks with Python', 
     'Put It to Work: Prepare for Cybersecurity Jobs'
 ]
+
+
+
+# Group data by the number of completed courses
+completed_courses_counts = data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
+
+# Create a bar chart
+fig, ax = plt.subplots()
+completed_courses_counts.plot(kind='bar', ax=ax)
+ax.set_xlabel('Jumlah Course yang Telah Diselesaikan')
+ax.set_ylabel('Jumlah Peserta')
+ax.set_title('Jumlah Peserta per Jumlah Course yang Telah Diselesaikan')
+
+# Display the bar chart in Streamlit
+st.title('Jumlah Peserta Berdasarkan Jumlah Course yang Telah Diselesaikan')
+st.pyplot(fig)
+
+# Optional: Display the dataset
+st.write('Dataset:')
+st.write(data)
+
+
+
+
 
 # Calculate the number of participants who passed each course
 kelulusan_data = {course: (data[course] == 'Lulus').sum() for course in course_columns}
