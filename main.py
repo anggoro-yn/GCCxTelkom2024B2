@@ -3,6 +3,9 @@ import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 
+# Load dataset
+data = pd.read_csv('data.csv', delimiter=';')
+
 # Mapping dari kode fasilitator ke nama fasilitator
 fasilitator_mapping = {
     'DA01': 'Data Analytics - Adib Ahmad Istiqlal',
