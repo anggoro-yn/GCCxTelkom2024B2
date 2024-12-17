@@ -194,16 +194,39 @@ ax.set_title('Jumlah Kelulusan Per Course')
 # Display the bar chart in Streamlit
 st.pyplot(fig)
 
-# Calculate the number of participants who passed each course
-# kelulusan_data = {course: (data[course] == 'Lulus').sum() for course in course_columns}
 
-#fig_bar = px.bar(
-#    x=list(kelulusan_data.keys()),
-#    y=list(kelulusan_data.values()),
-#    labels={'x': 'Course', 'y': 'Jumlah Peserta Lulus'},
-#    title='Tingkat Kelulusan per Course'
-#)
-#st.plotly_chart(fig_bar)
+
+
+# Create a list of course counts (1 to 6)
+courses = list(range(1, 7))
+
+# Initialize the dictionary
+courses_data = {}
+
+# Calculate the number of students completed for each course count
+for course in courses:
+    count = sum(filtered_data['Jumlah Course yang Telah Diselesaikan'] >= course)
+    courses_data[course] = count
+
+# Display the dictionary
+st.write(courses_data)
+
+
+
+
+# Calculate the number of participants who passed each course
+#kelulusan_data = {course: (data[course] == 'Lulus').sum() for course in course_columns}
+
+fig_bar = px.bar(
+    x=list(courses_data.keys()),
+    y=list(courses_data.values()),
+    labels={'x': 'Course', 'y': 'Jumlah Peserta Lulus'},
+    title='Tingkat Kelulusan per Course'
+)
+st.plotly_chart(fig_bar)
+
+
+
 
 # Tingkat penyelesaian peserta (Pie chart)
 st.header('2. Tingkat Penyelesaian Peserta')
