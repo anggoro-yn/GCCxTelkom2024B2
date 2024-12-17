@@ -153,15 +153,6 @@ else:
 # Tingkat kelulusan per course (Bar chart)
 st.header('1. Tingkat Kelulusan per Course')
 
-course_name = [
-    'Foundations of Project Management', 
-    'Project Initiation: Starting a Successful Project', 
-    'Project Planning: Putting It All Together', 
-    'Project Execution: Running the Project', 
-    'Agile Project Management', 
-    'Capstone: Applying Project Management in the Real World'
-    ]
-
 # Filter data to exclude participants with 0 completed courses
 filtered_data = data[data['Jumlah Course yang Telah Diselesaikan'] > 0]
 
@@ -176,12 +167,25 @@ for course in courses:
     count = sum(filtered_data['Jumlah Course yang Telah Diselesaikan'] >= course)
     courses_data[course] = count
 
+# Nama-nama kursus yang diinginkan sebagai kunci baru
+new_keys = [
+    'Foundations of Project Management',
+    'Project Initiation: Starting a Successful Project',
+    'Project Planning: Putting It All Together',
+    'Project Execution: Running the Project',
+    'Agile Project Management',
+    'Capstone: Applying Project Management in the Real World'
+]
+
+# Membuat dictionary baru dengan kunci yang diubah
+courses_data_updated = {new_keys[i]: value for i, (key, value) in enumerate(courses_data.items())}
+
 # Calculate the number of participants who passed each course
 #kelulusan_data = {course: (data[course] == 'Lulus').sum() for course in course_columns}
 
 fig_bar = px.bar(
-    x=list(courses_data.keys()),
-    y=list(courses_data.values()),
+    x=list(courses_data_updated.keys()),
+    y=list(courses_data_updated.values()),
     labels={'x': 'Course', 'y': 'Jumlah Peserta Lulus'},
     title='Tingkat Kelulusan per Course'
 )
