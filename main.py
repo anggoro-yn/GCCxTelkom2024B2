@@ -189,12 +189,6 @@ courses_data = pd.Series(data=number_of_students_completed, index=courses, name=
 # Rename the index to 'Courses'
 courses_data.index.name = 'Courses'
 
-# Display the Series
-st.write(courses_data)
-
-
-
-
 
 
 # Group data by the number of completed courses
@@ -203,7 +197,7 @@ st.write(completed_courses_counts)
 
 # Create a bar chart
 fig, ax = plt.subplots()
-completed_courses_counts.plot(kind='bar', ax=ax)
+courses_data.plot(kind='bar', ax=ax)
 ax.set_xlabel('Jumlah Course yang Telah Diselesaikan')
 ax.set_ylabel('Jumlah Peserta')
 ax.set_title('Jumlah Peserta per Jumlah Course yang Telah Diselesaikan')
