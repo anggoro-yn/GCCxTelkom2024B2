@@ -180,7 +180,7 @@ for course in courses:
 #kelulusan_data = {course: (data[course] == 'Lulus').sum() for course in course_columns}
 
 fig_bar = px.bar(
-    x=list(courses_data.keys()),
+#    x=list(courses_data.keys()),
     x=list(course_name(courses_data.keys())),
     y=list(courses_data.values()),
     labels={'x': 'Course', 'y': 'Jumlah Peserta Lulus'},
