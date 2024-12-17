@@ -195,7 +195,7 @@ st.header('2. Tingkat Penyelesaian Peserta')
 completion_counts = data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
 st.write(completion_counts)
 
-completion_labels = [f'{i} Course' for i in completion_counts.index]
+completion_labels = [f'{iint(i)} Course' for i in completion_counts.index]
 
 # Define color map to match each label
 #color_mapping = {
