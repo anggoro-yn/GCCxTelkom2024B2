@@ -166,19 +166,12 @@ course_columns = [
 
 
 
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Load dataset
-data = pd.read_csv('data.csv', sep=';')
-
 # Filter data to exclude participants with 0 completed courses
 filtered_data = data[data['Jumlah Course yang Telah Diselesaikan'] > 0]
 
 # Group data by the number of completed courses
 completed_courses_counts = filtered_data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
-
+st.write(completed_courses_counts)
 # Create a bar chart
 fig, ax = plt.subplots()
 completed_courses_counts.plot(kind='bar', ax=ax)
