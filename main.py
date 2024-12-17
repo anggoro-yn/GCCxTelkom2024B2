@@ -169,9 +169,36 @@ course_columns = [
 # Filter data to exclude participants with 0 completed courses
 filtered_data = data[data['Jumlah Course yang Telah Diselesaikan'] > 0]
 
+
+
+
+# Create a list of course counts (1 to 6)
+courses = list(range(1, 7))
+
+# Initialize the 'Number_of_students_completed' list
+number_of_students_completed = []
+
+# Calculate the number of students completed for each course count
+for course in courses:
+    count = sum(filtered_data['Jumlah Course yang Telah Diselesaikan'] >= course)
+    number_of_students_completed.append(count)
+
+# Create the DataFrame
+courses_data = pd.DataFrame({
+    'Courses': courses,
+    'Number_of_students_completed': number_of_students_completed
+})
+
+# Display the DataFrame
+print(courses_data)
+
+
+
+
+
 # Group data by the number of completed courses
 completed_courses_counts = filtered_data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
-completed_courses_counts
+completed_cour
 st.write(completed_courses_counts)
 
 # Create a bar chart
