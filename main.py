@@ -164,13 +164,8 @@ course_columns = [
     'Put It to Work: Prepare for Cybersecurity Jobs'
 ]
 
-
-
 # Filter data to exclude participants with 0 completed courses
 filtered_data = data[data['Jumlah Course yang Telah Diselesaikan'] > 0]
-
-
-
 
 # Create a list of course counts (1 to 6)
 courses = list(range(1, 7))
@@ -189,12 +184,6 @@ courses_data = pd.Series(data=number_of_students_completed, index=courses, name=
 # Rename the index to 'Courses'
 courses_data.index.name = 'Courses'
 
-
-
-# Group data by the number of completed courses
-completed_courses_counts = filtered_data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
-st.write(completed_courses_counts)
-
 # Create a bar chart
 fig, ax = plt.subplots()
 courses_data.plot(kind='bar', ax=ax)
@@ -206,25 +195,16 @@ ax.set_title('Jumlah Peserta per Jumlah Course yang Telah Diselesaikan')
 st.title('Jumlah Peserta Berdasarkan Jumlah Course yang Telah Diselesaikan (Tanpa Peserta yang Belum Menyelesaikan Kursus)')
 st.pyplot(fig)
 
-# Optional: Display the dataset
-st.write('Dataset:')
-st.write(filtered_data)
-
-
-
-
-
-
 # Calculate the number of participants who passed each course
-kelulusan_data = {course: (data[course] == 'Lulus').sum() for course in course_columns}
+# kelulusan_data = {course: (data[course] == 'Lulus').sum() for course in course_columns}
 
-fig_bar = px.bar(
-    x=list(kelulusan_data.keys()),
-    y=list(kelulusan_data.values()),
-    labels={'x': 'Course', 'y': 'Jumlah Peserta Lulus'},
-    title='Tingkat Kelulusan per Course'
-)
-st.plotly_chart(fig_bar)
+#fig_bar = px.bar(
+#    x=list(kelulusan_data.keys()),
+#    y=list(kelulusan_data.values()),
+#    labels={'x': 'Course', 'y': 'Jumlah Peserta Lulus'},
+#    title='Tingkat Kelulusan per Course'
+#)
+#st.plotly_chart(fig_bar)
 
 # Tingkat penyelesaian peserta (Pie chart)
 st.header('2. Tingkat Penyelesaian Peserta')
