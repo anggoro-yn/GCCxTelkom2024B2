@@ -193,6 +193,8 @@ st.header('2. Tingkat Penyelesaian Peserta')
 
 # Calculate completion rates for participants based on the number of completed courses
 completion_counts = data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
+st.write(completion_counts)
+
 completion_labels = [f'{i} Course' for i in completion_counts.index]
 
 # Define color map to match each label
@@ -212,10 +214,10 @@ color_mapping = {
     '0 Course': '#FF0000',  # Merah untuk 0 course
     '1 Course': '#FF4500',  # Gradasi untuk 1 course
     '2 Course': '#FF7F00',  # Gradasi untuk 2 course
-    '3 Course': '#00FF00',  # Gradasi untuk 5 course
-    '4 Course': '#00FFFF',  # Gradasi untuk 6 course
-    '5 Course': '#00BFFF',  # Gradasi untuk 7 course
-    '6 Course': '#1E90FF'   # Kebiruan untuk 8 course
+    '3 Course': '#00FF00',  # Gradasi untuk 3 course
+    '4 Course': '#00FFFF',  # Gradasi untuk 4 course
+    '5 Course': '#00BFFF',  # Gradasi untuk 5 course
+    '6 Course': '#1E90FF'   # Kebiruan untuk 6 course
 }
 
 
