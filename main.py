@@ -192,7 +192,6 @@ ax.set_ylabel('Jumlah Peserta')
 ax.set_title('Jumlah Kelulusan Per Course')
 
 # Display the bar chart in Streamlit
-st.title('Jumlah Peserta Berdasarkan Jumlah Course yang Telah Diselesaikan (Tanpa Peserta yang Belum Menyelesaikan Kursus)')
 st.pyplot(fig)
 
 # Calculate the number of participants who passed each course
