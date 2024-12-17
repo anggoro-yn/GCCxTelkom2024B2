@@ -83,10 +83,10 @@ selected_fasilitator = st.sidebar.selectbox('Pilih Kelompok Fasilitator:', fasil
 # <Tambahan
 
 # Menghitung persentase kelulusan per kelompok fasilitator (TIDAK dipengaruhi oleh pemilihan)
-kelulusan_counts = data.groupby('Kelompok Fasilitator')['Jumlah Course yang Sudah Diselesaikan'].apply(
+kelulusan_counts = data.groupby('Kelompok Fasilitator')['Jumlah Course yang Telah Diselesaikan'].apply(
     lambda x: (x == 8).sum()
 )
-total_counts = data.groupby('Kelompok Fasilitator')['Jumlah Course yang Sudah Diselesaikan'].count()
+total_counts = data.groupby('Kelompok Fasilitator')['Jumlah Course yang Telah Diselesaikan'].count()
 
 # Menghitung persentase
 persentase_kelulusan = (kelulusan_counts / total_counts * 100).fillna(0).round(2)
