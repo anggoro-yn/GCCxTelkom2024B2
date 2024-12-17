@@ -198,7 +198,6 @@ print(courses_data)
 
 # Group data by the number of completed courses
 completed_courses_counts = filtered_data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
-completed_cour
 st.write(completed_courses_counts)
 
 # Create a bar chart
