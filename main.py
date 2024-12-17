@@ -67,21 +67,17 @@ fasilitator_mapping = {
     'IA01': 'IT Automation - Marcel Aditya Pamungkas',
     'IA02': 'IT Automation - Mario Angelo Prabawa'
 }
-st.write("Test3")
-
 
 # Gantikan kode fasilitator dengan nama fasilitator
 data['Kelompok Fasilitator'] = data['Kelompok Fasilitator'].map(fasilitator_mapping)
 
 # Pastikan semua nilai dalam kolom 'Kelompok Fasilitator' adalah tipe string
 data['Kelompok Fasilitator'] = data['Kelompok Fasilitator'].astype(str)
-st.write("Test4")
 # Sidebar for facilitator selection
 st.sidebar.header('Filter Fasilitator')
 fasilitator_options = ['Semua'] + sorted(data['Kelompok Fasilitator'].unique().tolist())
 selected_fasilitator = st.sidebar.selectbox('Pilih Kelompok Fasilitator:', fasilitator_options)
 
-st.write("Test5")
 # <Tambahan
 
 # Menghitung persentase kelulusan per kelompok fasilitator (TIDAK dipengaruhi oleh pemilihan)
