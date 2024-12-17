@@ -110,9 +110,10 @@ st.title('Visualisasi Kelulusan dan Progress Peserta')
 
 # Daftar peserta yang telah menyelesaikan seluruh course
 st.header('Selamat kepada peserta berikut yang telah menyelesaikan seluruh course')
-
-# Filter peserta yang telah menyelesaikan 8 course
+st.write("test 1")
+# Filter peserta yang telah menyelesaikan 6 course
 completed_all_courses = data[data['Jumlah Course yang Telah Diselesaikan'] == 6]['Name'].tolist()
+st.write("test 2")
 
 # Display the names of participants who completed all courses
 jumlah = len(completed_all_courses)
@@ -149,6 +150,9 @@ if completed_all_courses:
                 st.write(f"- {name}")
 else:
     st.write("Belum ada peserta yang menyelesaikan seluruh course.")
+
+st.write("test 3")
+
 
 # Display the names of participants who completed all courses
 #if completed_all_courses:
