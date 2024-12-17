@@ -180,9 +180,6 @@ new_keys = [
 # Membuat dictionary baru dengan kunci yang diubah
 courses_data_updated = {new_keys[i]: value for i, (key, value) in enumerate(courses_data.items())}
 
-# Calculate the number of participants who passed each course
-#kelulusan_data = {course: (data[course] == 'Lulus').sum() for course in course_columns}
-
 fig_bar = px.bar(
     x=list(courses_data_updated.keys()),
     y=list(courses_data_updated.values()),
@@ -195,7 +192,7 @@ st.plotly_chart(fig_bar)
 st.header('2. Tingkat Penyelesaian Peserta')
 
 # Calculate completion rates for participants based on the number of completed courses
-completion_counts = data['Total Course yang Sudah Diselesaikan'].value_counts().sort_index()
+completion_counts = data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
 completion_labels = [f'{i} Course' for i in completion_counts.index]
 
 # Define color map to match each label
