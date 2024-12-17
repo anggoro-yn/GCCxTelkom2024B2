@@ -167,10 +167,6 @@ course_columns = [
 # Filter data to exclude participants with 0 completed courses
 filtered_data = data[data['Jumlah Course yang Telah Diselesaikan'] > 0]
 
-
-
-
-
 # Create a list of course counts (1 to 6)
 courses = list(range(1, 7))
 
@@ -181,12 +177,6 @@ courses_data = {}
 for course in courses:
     count = sum(filtered_data['Jumlah Course yang Telah Diselesaikan'] >= course)
     courses_data[course] = count
-
-# Display the dictionary
-st.write(courses_data)
-
-
-
 
 # Calculate the number of participants who passed each course
 #kelulusan_data = {course: (data[course] == 'Lulus').sum() for course in course_columns}
