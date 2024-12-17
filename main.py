@@ -23,18 +23,18 @@ fasilitator_mapping = {
     'DA13': 'Data Analytics - Lutfi Herdiansyah Ws',
     'DA14': 'Data Analytics - Yayang Dwijayani Panggi',
     'DA15': 'Data Analytics - Bagus Akhlaq',
-    'PM01': 'Project Management - Anggoro Yudho Nuswantoro',
-    'PM02': 'Project Management - Cynthia Caroline',
-    'PM03': 'Project Management - Fadasa Rizki Barata',
-    'PM04': 'Project Management - Mufti Alie Satriawan',
-    'PM05': 'Project Management - Muhammad Ali Umar',
-    'PM06': 'Project Management - Muhammad Faris Afif Putra',
-    'PM07': 'Project Management - Rahma Rizky Alifia',
-    'PM08': 'Project Management - Roby Ismail Adi Putra',
-    'PM09': 'Project Management - Wandi Oktapiadi',
-    'PM10': 'Project Management - Togihon Josia Paber Simaremare',
-    'PM11': 'Project Management - Andrey Prabowo',
-    'PM12': 'Project Management - Anita Fitriyawati',
+    'PM01': 'Anggoro Yudho Nuswantoro',
+    'PM02': 'Cynthia Caroline',
+    'PM03': 'Fadasa Rizki Barata',
+    'PM04': 'Mufti Alie Satriawan',
+    'PM05': 'Muhammad Ali Umar',
+    'PM06': 'Muhammad Faris Afif Putra',
+    'PM07': 'Rahma Rizky Alifia',
+    'PM08': 'Roby Ismail Adi Putra',
+    'PM09': 'Wandi Oktapiadi',
+    'PM10': 'Togihon Josia Paber Simaremare',
+    'PM11': 'Andrey Prabowo',
+    'PM12': 'Anita Fitriyawati',
     'IS01': 'IT Support - Fauzia Anis Sekar Ningrum',
     'IS02': 'IT Support - Jajang Jamaludin',
     'IS03': 'IT Support - Kanaya Novivian Tabitha Angel',
@@ -171,7 +171,9 @@ filtered_data = data[data['Jumlah Course yang Telah Diselesaikan'] > 0]
 
 # Group data by the number of completed courses
 completed_courses_counts = filtered_data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
+completed_courses_counts
 st.write(completed_courses_counts)
+
 # Create a bar chart
 fig, ax = plt.subplots()
 completed_courses_counts.plot(kind='bar', ax=ax)
