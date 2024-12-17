@@ -68,11 +68,13 @@ fasilitator_mapping = {
     'IA02': 'IT Automation - Mario Angelo Prabawa'
 }
 
+
 # Gantikan kode fasilitator dengan nama fasilitator
 data['Kelompok Fasilitator'] = data['Kelompok Fasilitator'].map(fasilitator_mapping)
 
 # Pastikan semua nilai dalam kolom 'Kelompok Fasilitator' adalah tipe string
 data['Kelompok Fasilitator'] = data['Kelompok Fasilitator'].astype(str)
+
 # Sidebar for facilitator selection
 st.sidebar.header('Filter Fasilitator')
 fasilitator_options = ['Semua'] + sorted(data['Kelompok Fasilitator'].unique().tolist())
@@ -81,23 +83,20 @@ selected_fasilitator = st.sidebar.selectbox('Pilih Kelompok Fasilitator:', fasil
 # <Tambahan
 
 # Menghitung persentase kelulusan per kelompok fasilitator (TIDAK dipengaruhi oleh pemilihan)
-kelulusan_counts = data.groupby('Kelompok Fasilitator')['Progress Belajar Percentage'].apply(
-    lambda x: (x == '100%').sum()
+kelulusan_counts = data.groupby('Kelompok Fasilitator')['Total Course yang Sudah Diselesaikan'].apply(
+    lambda x: (x == 8).sum()
 )
-st.write("Test5.1")
-st.write(kelulusan_counts)
-total_counts = data.groupby('Kelompok Fasilitator')['Jumlah Course yang Telah Diselesaikan'].count()
-st.write("Test5.5")
-st.write(total_counts)
+total_counts = data.groupby('Kelompok Fasilitator')['Total Course yang Sudah Diselesaikan'].count()
+
 # Menghitung persentase
 persentase_kelulusan = (kelulusan_counts / total_counts * 100).fillna(0).round(2)
-st.write("Test6")
+
 # Mengubah ke DataFrame untuk tampilan tabel
 kelulusan_df = pd.DataFrame({
     'Nama Fasilitator': persentase_kelulusan.index,
     'Persentase Kelulusan (%)': persentase_kelulusan.values
 }).reset_index(drop=True)
-st.write("Test7")
+
 # Mengurutkan DataFrame dari persentase tertinggi ke terendah
 # kelulusan_df.sort_values(by='Persentase Kelulusan (%)', ascending=False, inplace=True)
 
@@ -113,7 +112,7 @@ st.title('Visualisasi Kelulusan dan Progress Peserta')
 st.header('Selamat kepada peserta berikut yang telah menyelesaikan seluruh course')
 
 # Filter peserta yang telah menyelesaikan 8 course
-completed_all_courses = data[data['Progress Belajar Percentage'] == '100%']['Nama'].tolist()
+completed_all_courses = data[data['Total Course yang Sudah Diselesaikan'] == 8]['Name'].tolist()
 
 # Display the names of participants who completed all courses
 jumlah = len(completed_all_courses)
@@ -159,7 +158,6 @@ else:
 #    st.write("Belum ada peserta yang menyelesaikan seluruh course.")
 
 # Tingkat kelulusan per course (Bar chart)
-note01 = '''
 st.header('1. Tingkat Kelulusan per Course')
 
 course_columns = [
@@ -183,14 +181,12 @@ fig_bar = px.bar(
     title='Tingkat Kelulusan per Course'
 )
 st.plotly_chart(fig_bar)
-'''
-
 
 # Tingkat penyelesaian peserta (Pie chart)
 st.header('2. Tingkat Penyelesaian Peserta')
 
 # Calculate completion rates for participants based on the number of completed courses
-completion_counts = data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
+completion_counts = data['Total Course yang Sudah Diselesaikan'].value_counts().sort_index()
 completion_labels = [f'{i} Course' for i in completion_counts.index]
 
 # Define color map to match each label
@@ -218,46 +214,6 @@ fig_pie_completion = px.pie(
     color_discrete_map=color_mapping
 )
 st.plotly_chart(fig_pie_completion)
-
-st.write("test pie chart lama")
-
-df = data
-
-# Menghapus tanda persentase dan mengkonversi ke numerik 
-df['Progress Belajar Percentage'] = df['Progress Belajar Percentage'].str.replace('%', '').astype(float)
-
-# Mendefinisikan kategori
-bins = [0, 20, 40, 60, 80, 100]
-labels = ['>0% - 20%', '>20% - 40%', '>40% - 60%', '>60% - 80%', '>80% - 100%']
-
-# Mengelompokkan data ke dalam kategori
-df['Kategori'] = pd.cut(df['Progress Belajar Percentage'], bins=bins, labels=labels, include_lowest=True)
-st.write(df)
-# Menghitung jumlah peserta dalam setiap kategori
-category_counts = df['Kategori'].value_counts().sort_index()
-
-# Menambahkan kategori 0% secara manual
-category_counts.loc['0%'] = (df['Progress Belajar Percentage'] == 0).sum()
-
-# Membuat pie chart
-fig, ax = plt.subplots(figsize=(10, 7))
-ax.pie(category_counts, labels=category_counts.index, autopct='%1.1f%%', startangle=140)
-ax.set_title("Distribusi Kategori Progress Belajar Peserta")
-ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
-# Tampilkan pie chart di Streamlit
-st.pyplot(fig)
-
-
-
-
-
-
-st.write("test pie chart baru")
-
-
-
-
 
 # Distribusi status progress peserta (Pie chart)
 st.header('3. Status Progress Peserta')
