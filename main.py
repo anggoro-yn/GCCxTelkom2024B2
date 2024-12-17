@@ -234,16 +234,19 @@ fig_pie_completion = px.pie(
 )
 st.plotly_chart(fig_pie_completion)
 
+
+
+
 # Distribusi status progress peserta (Pie chart)
 st.header('3. Status Progress Peserta')
 
 # Calculate distribution of progress status
-progress_counts = data['Status Progress'].value_counts()
+progress_counts = data['Remark Progress Belajar'].value_counts()
 progress_labels = [f'{i}' for i in progress_counts.index]
 
 # Define color map to match each label
 color_mapping = {
-    'Belum Terdaftar': '#FF0000', 
+    'Belum Enroll': '#FF0000', 
     'Belum Berprogress': '#FF4500',
     'Progress Dibawah Rekomendasi': '#FF7F00',
     'Progress Diatas/Sesuai Rekomendasi': '#00BFFF',
