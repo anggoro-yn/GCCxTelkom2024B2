@@ -153,16 +153,14 @@ else:
 # Tingkat kelulusan per course (Bar chart)
 st.header('1. Tingkat Kelulusan per Course')
 
-course_columns = [
-    'Foundations of Cybersecurity', 
-    'Play It Safe: Manage Security Risks', 
-    'Connect and Protect: Networks and Network Security', 
-    'Tools of the Trade: Linux and SQL', 
-    'Assets, Threats, and Vulnerabilities', 
-    'Sound the Alarm: Detection and Response', 
-    'Automate Cybersecurity Tasks with Python', 
-    'Put It to Work: Prepare for Cybersecurity Jobs'
-]
+course_name = [
+    'Foundations of Project Management', 
+    'Project Initiation: Starting a Successful Project', 
+    'Project Planning: Putting It All Together', 
+    'Project Execution: Running the Project', 
+    'Agile Project Management', 
+    'Capstone: Applying Project Management in the Real World'
+    ]
 
 # Filter data to exclude participants with 0 completed courses
 filtered_data = data[data['Jumlah Course yang Telah Diselesaikan'] > 0]
@@ -183,14 +181,12 @@ for course in courses:
 
 fig_bar = px.bar(
     x=list(courses_data.keys()),
+    x=list(course_name(courses_data.keys())),
     y=list(courses_data.values()),
     labels={'x': 'Course', 'y': 'Jumlah Peserta Lulus'},
     title='Tingkat Kelulusan per Course'
 )
 st.plotly_chart(fig_bar)
-
-
-
 
 # Tingkat penyelesaian peserta (Pie chart)
 st.header('2. Tingkat Penyelesaian Peserta')
