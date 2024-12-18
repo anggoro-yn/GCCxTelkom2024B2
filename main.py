@@ -193,7 +193,6 @@ st.header('2. Tingkat Penyelesaian Peserta')
 
 # Calculate completion rates for participants based on the number of completed courses
 completion_counts = data['Jumlah Course yang Telah Diselesaikan'].value_counts().sort_index()
-st.write(completion_counts)
 
 completion_labels = [f'{int(i)} Course' for i in completion_counts.index]
 
