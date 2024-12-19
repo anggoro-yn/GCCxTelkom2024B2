@@ -6,6 +6,14 @@ import matplotlib.pyplot as plt
 # Load dataset
 data = pd.read_csv('data.csv', delimiter=';')
 
+
+
+# Kita akan menyaring dataframe untuk hanya menyimpan baris di mana kolom 'Spesialisasi' adalah 'Google Project Management Professional Certificate'
+data = data[data['Spesialisasi'] == 'Google Project Management Professional Certificate']
+
+
+
+
 # Mapping dari kode fasilitator ke nama fasilitator
 fasilitator_mapping = {
     'DA01': 'Data Analytics - Adib Ahmad Istiqlal',
