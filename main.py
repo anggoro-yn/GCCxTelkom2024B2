@@ -4,33 +4,25 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 
 # Load dataset
-data = pd.read_csv('data.csv', delimiter=';')
-
-
-
-# Kita akan menyaring dataframe untuk hanya menyimpan baris di mana kolom 'Spesialisasi' adalah 'Google Project Management Professional Certificate'
-data = data[data['Spesialisasi'] == 'Google Project Management Professional Certificate']
-
-
-
+data_raw = pd.read_csv('data.csv', delimiter=';')
 
 # Mapping dari kode fasilitator ke nama fasilitator
 fasilitator_mapping = {
-    'DA01': 'Data Analytics - Adib Ahmad Istiqlal',
-    'DA02': 'Data Analytics - Affan Ikhsan',
-    'DA03': 'Data Analytics - Andrew Benedictus Jamesie',
-    'DA04': 'Data Analytics - Bramantio Galih Arintoko',
-    'DA05': 'Data Analytics - Camelia Regista ',
-    'DA06': 'Data Analytics - Cindy Steffani',
-    'DA07': 'Data Analytics - Eka Dwi Sariningsih',
-    'DA08': 'Data Analytics - Fariz Fadila',
-    'DA09': 'Data Analytics - Giselle Halim',
-    'DA10': 'Data Analytics - Halim sajidi',
-    'DA11': 'Data Analytics - Ida Sri Afiqah',
-    'DA12': 'Data Analytics - Irfan Rizqulloh',
-    'DA13': 'Data Analytics - Lutfi Herdiansyah Ws',
-    'DA14': 'Data Analytics - Yayang Dwijayani Panggi',
-    'DA15': 'Data Analytics - Bagus Akhlaq',
+    'DA01': 'Adib Ahmad Istiqlal',
+    'DA02': 'Affan Ikhsan',
+    'DA03': 'Andrew Benedictus Jamesie',
+    'DA04': 'Bramantio Galih Arintoko',
+    'DA05': 'Camelia Regista ',
+    'DA06': 'Cindy Steffani',
+    'DA07': 'Eka Dwi Sariningsih',
+    'DA08': 'Fariz Fadila',
+    'DA09': 'Giselle Halim',
+    'DA10': 'Halim sajidi',
+    'DA11': 'Ida Sri Afiqah',
+    'DA12': 'Irfan Rizqulloh',
+    'DA13': 'Lutfi Herdiansyah Ws',
+    'DA14': 'Yayang Dwijayani Panggi',
+    'DA15': 'Bagus Akhlaq',
     'PM01': 'Anggoro Yudho Nuswantoro',
     'PM02': 'Cynthia Caroline',
     'PM03': 'Fadasa Rizki Barata',
@@ -43,56 +35,62 @@ fasilitator_mapping = {
     'PM10': 'Togihon Josia Paber Simaremare',
     'PM11': 'Andrey Prabowo',
     'PM12': 'Anita Fitriyawati',
-    'IS01': 'IT Support - Fauzia Anis Sekar Ningrum',
-    'IS02': 'IT Support - Jajang Jamaludin',
-    'IS03': 'IT Support - Kanaya Novivian Tabitha Angel',
-    'UX01': 'UX Design - Hafizh Daffa Septianto',
-    'UX02': 'UX Design - Maulana Akbar Kusuma',
-    'UX03': 'UX Design - Muhamad Ibnu Farizky',
-    'UX04': 'UX Design - Nisa Fatimatuz Zahro',
-    'AD01': 'Advanced Data Analytics - Alif Khusain Bilfaqih',
-    'AD02': 'Advanced Data Analytics - Erik Feri Fadli',
-    'AD03': 'Advanced Data Analytics - Muhammad Aliif Nurrahman',
-    'AD04': 'Advanced Data Analytics - Muhammad Sahrul',
-    'AD05': 'Advanced Data Analytics - Rais Sulaiman Rusid',
-    'AD06': 'Advanced Data Analytics - Yosriko Rahmat Karoni Sabelekake',
-    'BI01': 'Business Intelligence - Darmawan Kristiaji',
-    'BI02': 'Business Intelligence - Muhamad Ihsan Ashari',
-    'BI03': 'Business Intelligence - Muhammad Fahmy Fakhrija',
-    'BI04': 'Business Intelligence - Yonvi Satria',
-    'CS01': 'Cybersecurity - Adrianus Yoga Arsa Sadana',
-    'CS02': 'Cybersecurity - Arif Mulyono',
-    'CS03': 'Cybersecurity - Daffa akhdan Fadhillah ',
-    'CS04': 'Cybersecurity - Hendrik Roland Hutapea',
-    'CS05': 'Cybersecurity - Affandy Murad',
-    'DM01': 'Digital Marketing - Muhammad Rizqi Adha',
-    'DM02': 'Digital Marketing - Azzam Fitra Nuraiman',
-    'DM03': 'Digital Marketing - Ghalda Khairunnisa',
-    'DM04': 'Digital Marketing - Wahyu Nudiya',
-    'DM05': 'Digital Marketing - Trio Sellin Nur Kholis ',
-    'DM06': 'Digital Marketing - Raffa Arya Nugraha',
-    'DM07': 'Digital Marketing - Arijal Ibnu Jati',
-    'IA01': 'IT Automation - Marcel Aditya Pamungkas',
-    'IA02': 'IT Automation - Mario Angelo Prabawa'
+    'IS01': 'Fauzia Anis Sekar Ningrum',
+    'IS02': 'Jajang Jamaludin',
+    'IS03': 'Kanaya Novivian Tabitha Angel',
+    'UX01': 'Hafizh Daffa Septianto',
+    'UX02': 'Maulana Akbar Kusuma',
+    'UX03': 'Muhamad Ibnu Farizky',
+    'UX04': 'Nisa Fatimatuz Zahro',
+    'AD01': 'Alif Khusain Bilfaqih',
+    'AD02': 'Erik Feri Fadli',
+    'AD03': 'Muhammad Aliif Nurrahman',
+    'AD04': 'Muhammad Sahrul',
+    'AD05': 'Rais Sulaiman Rusid',
+    'AD06': 'Yosriko Rahmat Karoni Sabelekake',
+    'BI01': 'Darmawan Kristiaji',
+    'BI02': 'Muhamad Ihsan Ashari',
+    'BI03': 'Muhammad Fahmy Fakhrija',
+    'BI04': 'Yonvi Satria',
+    'CS01': 'Adrianus Yoga Arsa Sadana',
+    'CS02': 'Arif Mulyono',
+    'CS03': 'Daffa akhdan Fadhillah ',
+    'CS04': 'Hendrik Roland Hutapea',
+    'CS05': 'Affandy Murad',
+    'DM01': 'Muhammad Rizqi Adha',
+    'DM02': 'Azzam Fitra Nuraiman',
+    'DM03': 'Ghalda Khairunnisa',
+    'DM04': 'Wahyu Nudiya',
+    'DM05': 'Trio Sellin Nur Kholis ',
+    'DM06': 'Raffa Arya Nugraha',
+    'DM07': 'Arijal Ibnu Jati',
+    'IA01': 'Marcel Aditya Pamungkas',
+    'IA02': 'Mario Angelo Prabawa'
 }
 
-
 # Gantikan kode fasilitator dengan nama fasilitator
-data['Kelompok Fasilitator'] = data['Kelompok Fasilitator'].map(fasilitator_mapping)
-
+data_raw['Kelompok Fasilitator'] = data_raw['Kelompok Fasilitator'].map(fasilitator_mapping)
 # Pastikan semua nilai dalam kolom 'Kelompok Fasilitator' adalah tipe string
-data['Kelompok Fasilitator'] = data['Kelompok Fasilitator'].astype(str)
+data_raw['Kelompok Fasilitator'] = data_raw['Kelompok Fasilitator'].astype(str)
 
 # Sidebar for facilitator selection
-st.sidebar.header('Filter Fasilitator')
+st.sidebar.header('Pilihan Spesialisasi dan Fasilitator')
+
+spesialisasi_options = data_raw['Spesialisasi'].unique().tolist()
+selected_spesialisasi = st.sidebar.selectbox('Pilih Spesialisasi:', spesialisasi_options)
+
+# Kita akan menyaring dataframe untuk hanya menyimpan baris di mana kolom 'Spesialisasi' adalah sesuai pilihan
+data = data_raw[data_raw['Spesialisasi'] == selected_spesialisasi].reset_index()
+
 fasilitator_options = ['Semua'] + sorted(data['Kelompok Fasilitator'].unique().tolist())
 selected_fasilitator = st.sidebar.selectbox('Pilih Kelompok Fasilitator:', fasilitator_options)
 
-# <Tambahan
+# Mengambil nilai dari baris pertama pada kolom 'Jumlah_course'
+jumlah_course = int(data.loc[0, 'Jumlah Course yang Perlu Diselesaikan'])
 
 # Menghitung persentase kelulusan per kelompok fasilitator (TIDAK dipengaruhi oleh pemilihan)
 kelulusan_counts = data.groupby('Kelompok Fasilitator')['Jumlah Course yang Telah Diselesaikan'].apply(
-    lambda x: (x == 6).sum()
+    lambda x: (x == jumlah_course).sum()
 )
 total_counts = data.groupby('Kelompok Fasilitator')['Jumlah Course yang Telah Diselesaikan'].count()
 
@@ -120,7 +118,7 @@ st.title('Visualisasi Kelulusan dan Progress Peserta')
 st.header('Selamat kepada peserta berikut yang telah menyelesaikan seluruh course')
 
 # Filter peserta yang telah menyelesaikan 6 course
-completed_all_courses = data[data['Jumlah Course yang Telah Diselesaikan'] == 6]['Nama'].tolist()
+completed_all_courses = data[data['Jumlah Course yang Telah Diselesaikan'] == jumlah_course]['Nama'].tolist()
 
 # Display the names of participants who completed all courses
 jumlah = len(completed_all_courses)
@@ -165,7 +163,7 @@ st.header('1. Tingkat Kelulusan per Course')
 filtered_data = data[data['Jumlah Course yang Telah Diselesaikan'] > 0]
 
 # Create a list of course counts (1 to 6)
-courses = list(range(1, 7))
+courses = list(range(1, jumlah_course+1))
 
 # Initialize the dictionary
 courses_data = {}
@@ -176,16 +174,186 @@ for course in courses:
     courses_data[course] = count
 
 # Nama-nama kursus yang diinginkan sebagai kunci baru
-new_keys = [
-    'Foundations of Project Management',
-    'Project Initiation: Starting a Successful Project',
-    'Project Planning: Putting It All Together',
-    'Project Execution: Running the Project',
-    'Agile Project Management',
-    'Capstone: Applying Project Management in the Real World'
-]
+if selected_spesialisasi == 'Google Data Analytics Professional Certificate':
+    new_keys = [
+        'Foundations: Data, Data, Everywhere',
+        'Ask Questions to Make Data-Driven Decisions',
+        'Prepare Data for Exploration',
+        'Process Data from Dirty to Clean',
+        'Analyze Data to Answer Questions',
+        'Share Data Through the Art of Visualization',
+        'Data Analysis with R Programming',
+        'Google Data Analytics Capstone: Complete a Case Study'
+    ]
+    # Define color map to match each label
+    color_mapping = {
+        '0 Course': '#FF0000',  # Merah untuk 0 course
+        '1 Course': '#FF4500',  # Gradasi untuk 1 course
+        '2 Course': '#FF7F00',  # Gradasi untuk 2 course
+        '3 Course': '#FFFF00',  # Gradasi untuk 3 course
+        '4 Course': '#7FFF00',  # Gradasi untuk 4 course
+        '5 Course': '#00FF00',  # Gradasi untuk 5 course
+        '6 Course': '#00FFFF',  # Gradasi untuk 6 course
+        '7 Course': '#00BFFF',  # Gradasi untuk 7 course
+        '8 Course': '#1E90FF'   # Kebiruan untuk 8 course
+    }
+elif selected_spesialisasi == 'Google Project Management Professional Certificate':
+    new_keys = [
+        'Foundations of Project Management',
+        'Project Initiation: Starting a Successful Project',
+        'Project Planning: Putting It All Together',
+        'Project Execution: Running the Project',
+        'Agile Project Management',
+        'Capstone: Applying Project Management in the Real World'
+    ]
+    # Define color map to match each label
+    color_mapping = {
+        '0 Course': '#FF0000',  # Merah untuk 0 course
+        '1 Course': '#FF4500',  # Gradasi untuk 1 course
+        '2 Course': '#FF7F00',  # Gradasi untuk 2 course
+        '3 Course': '#FFFF00',  # Gradasi untuk 3 course
+        '4 Course': '#00FFFF',  # Gradasi untuk 4 course
+        '5 Course': '#00BFFF',  # Gradasi untuk 5 course
+        '6 Course': '#1E90FF'   # Kebiruan untuk 6 course
+    }
+elif selected_spesialisasi == 'Google IT Support Professional Certificate':
+    new_keys = [
+        'Technical Support Fundamentals',
+        'The Bits and Bytes of Computer Networking',
+        'Operating Systems and You: Becoming a Power User',
+        'System Administration and IT Infrastructure Services',
+        'IT Security: Defense against the digital dark arts'
+    ]
+    # Define color map to match each label
+    color_mapping = {
+        '0 Course': '#FF0000',  # Merah untuk 0 course
+        '1 Course': '#FF4500',  # Gradasi untuk 1 course
+        '2 Course': '#FF7F00',  # Gradasi untuk 2 course
+        '3 Course': '#00FFFF',  # Gradasi untuk 3 course
+        '4 Course': '#00BFFF',  # Gradasi untuk 4 course
+        '5 Course': '#1E90FF'   # Kebiruan untuk 5 course
+    }
+elif selected_spesialisasi == 'Google UX Design Professional Certificate':
+    new_keys = [
+        'Foundations of User Experience (UX) Design',
+        'Start the UX Design Process: Empathize, Define, and Ideate',
+        'Build Wireframes and Low-Fidelity Prototypes',
+        'Conduct UX Research and Test Early Concepts',
+        'Create High-Fidelity Designs and Prototypes in Figma',
+        'Build Dynamic User Interfaces (UI) for Websites',
+        'Design a User Experience for Social Good & Prepare for Jobs'
+    ]
+    # Define color map to match each label
+    color_mapping = {
+        '0 Course': '#FF0000',  # Merah untuk 0 course
+        '1 Course': '#FF4500',  # Gradasi untuk 1 course
+        '2 Course': '#FF7F00',  # Gradasi untuk 2 course
+        '3 Course': '#FFFF00',  # Gradasi untuk 3 course
+        '4 Course': '#00FF00',  # Gradasi untuk 4 course
+        '5 Course': '#00FFFF',  # Gradasi untuk 5 course
+        '6 Course': '#00BFFF',  # Gradasi untuk 6 course
+        '7 Course': '#1E90FF'   # Kebiruan untuk 7 course
+    }
+elif selected_spesialisasi == 'Google Advanced Data Analytics Professional Certificate':
+    new_keys = [
+        'Foundations of Data Science',
+        'Get Started with Python',
+        'Go Beyond the Numbers: Translate Data into Insights',
+        'The Power of Statistics',
+        'Regression Analysis: Simplify Complex Data Relationships',
+        'The Nuts and Bolts of Machine Learning',
+        'Google Advanced Data Analytics Capstone'
+    ]
+    # Define color map to match each label
+    color_mapping = {
+        '0 Course': '#FF0000',  # Merah untuk 0 course
+        '1 Course': '#FF4500',  # Gradasi untuk 1 course
+        '2 Course': '#FF7F00',  # Gradasi untuk 2 course
+        '3 Course': '#FFFF00',  # Gradasi untuk 3 course
+        '4 Course': '#00FF00',  # Gradasi untuk 4 course
+        '5 Course': '#00FFFF',  # Gradasi untuk 5 course
+        '6 Course': '#00BFFF',  # Gradasi untuk 6 course
+        '7 Course': '#1E90FF'   # Kebiruan untuk 7 course
+    }
+elif selected_spesialisasi == 'Google Business Intelligence Professional Certificate':
+    new_keys = [
+        'Foundations of Business Intelligence',
+        'The Path to Insights: Data Models and Pipeline',
+        'Decisions, Decisions: Dashboards and Reports'
+    ]
+    # Define color map to match each label
+    color_mapping = {
+        '0 Course': '#FF0000',  # Merah untuk 0 course
+        '1 Course': '#FF4500',  # Gradasi untuk 1 course
+        '2 Course': '#00BFFF',  # Gradasi untuk 2 course
+        '3 Course': '#1E90FF'   # Kebiruan untuk 3 course
+    }
+elif selected_spesialisasi == 'Google Cybersecurity Professional Certificate':
+    new_keys = [
+        'Foundations of Cybersecurity',
+        'Play It Safe: Manage Security Risks',
+        'Connect and Protect: Networks and Network Security',
+        'Tools of the Trade: Linux and SQL',
+        'Assets, Threats, and Vulnerabilities',
+        'Sound the Alarm: Detection and Response',
+        'Automate Cybersecurity Tasks with Python',
+        'Put It to Work: Prepare for Cybersecurity Jobs'
+    ]
+    # Define color map to match each label
+    color_mapping = {
+        '0 Course': '#FF0000',  # Merah untuk 0 course
+        '1 Course': '#FF4500',  # Gradasi untuk 1 course
+        '2 Course': '#FF7F00',  # Gradasi untuk 2 course
+        '3 Course': '#FFFF00',  # Gradasi untuk 3 course
+        '4 Course': '#7FFF00',  # Gradasi untuk 4 course
+        '5 Course': '#00FF00',  # Gradasi untuk 5 course
+        '6 Course': '#00FFFF',  # Gradasi untuk 6 course
+        '7 Course': '#00BFFF',  # Gradasi untuk 7 course
+        '8 Course': '#1E90FF'   # Kebiruan untuk 8 course
+    }
+elif selected_spesialisasi == 'Google Digital Marketing & E-Commerce Professional Certificate':
+    new_keys = [
+        'Foundations of Digital Marketing and E-commerce',
+        'Attract and Engage Customers with Digital Marketing',
+        'From Likes to Leads: Interact with Customers Online',
+        'Think Outside the Inbox: Email Marketing',
+        'Assess for Success: Marketing Analytics and Measurement',
+        'Make the Sale: Build, Launch, and Manage E-commerce Stores',
+        'Satisfaction Guaranteed: Develop Customer Loyalty Online'
+    ]
+    # Define color map to match each label
+    color_mapping = {
+        '0 Course': '#FF0000',  # Merah untuk 0 course
+        '1 Course': '#FF4500',  # Gradasi untuk 1 course
+        '2 Course': '#FF7F00',  # Gradasi untuk 2 course
+        '3 Course': '#FFFF00',  # Gradasi untuk 3 course
+        '4 Course': '#00FF00',  # Gradasi untuk 4 course
+        '5 Course': '#00FFFF',  # Gradasi untuk 5 course
+        '6 Course': '#00BFFF',  # Gradasi untuk 6 course
+        '7 Course': '#1E90FF'   # Kebiruan untuk 7 course
+    }
+else:
+    new_keys = [
+        'Crash Course on Python',
+        'Using Python to Interact with the Operating System',
+        'Introduction to Git and GitHub',
+        'Troubleshooting and Debugging Techniques',
+        'Configuration Management and the Cloud',
+        'Automating Real-World Tasks with Python'
+    ]
+    # Define color map to match each label
+    color_mapping = {
+        '0 Course': '#FF0000',  # Merah untuk 0 course
+        '1 Course': '#FF4500',  # Gradasi untuk 1 course
+        '2 Course': '#FF7F00',  # Gradasi untuk 2 course
+        '3 Course': '#00FF00',  # Gradasi untuk 3 course
+        '4 Course': '#00FFFF',  # Gradasi untuk 4 course
+        '5 Course': '#00BFFF',  # Gradasi untuk 5 course
+        '6 Course': '#1E90FF'   # Kebiruan untuk 6 course
+    }
 
 # Membuat dictionary baru dengan kunci yang diubah
+courses_data_item = enumerate(courses_data.items())
 courses_data_updated = {new_keys[i]: value for i, (key, value) in enumerate(courses_data.items())}
 
 fig_bar = px.bar(
@@ -217,15 +385,7 @@ completion_labels = [f'{int(i)} Course' for i in completion_counts.index]
 #    '8 Course': '#1E90FF'   # Kebiruan untuk 8 course
 #}
 
-color_mapping = {
-    '0 Course': '#FF0000',  # Merah untuk 0 course
-    '1 Course': '#FF4500',  # Gradasi untuk 1 course
-    '2 Course': '#FF7F00',  # Gradasi untuk 2 course
-    '3 Course': '#00FF00',  # Gradasi untuk 3 course
-    '4 Course': '#00FFFF',  # Gradasi untuk 4 course
-    '5 Course': '#00BFFF',  # Gradasi untuk 5 course
-    '6 Course': '#1E90FF'   # Kebiruan untuk 6 course
-}
+
 
 
 # Buat DataFrame dari names dan values
