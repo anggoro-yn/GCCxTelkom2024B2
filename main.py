@@ -483,7 +483,7 @@ df_bu = pd.read_csv('data.csv', delimiter=';')
 lulus_spesialisasi = df_bu[df_bu['Remark Progress Belajar'] == 'Sudah Lulus Spesialisasi']
 
 # Calculate the percentage
-total_participants = df_bu['Unit Divisi/Nama AP/Yayasan'].value_counts()
+total_participants = df_bu['Unit Divisi/Nama AP/Yayasan '].value_counts()
 lulus_participants = lulus_spesialisasi['Unit Divisi/Nama AP/Yayasan'].value_counts()
 percentage_lulus = (lulus_participants / total_participants) * 100
 percentage_lulus = percentage_lulus.fillna(0)  # Replace NaN with 0
