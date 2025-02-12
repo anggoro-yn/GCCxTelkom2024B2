@@ -479,7 +479,7 @@ st.pyplot(plt)
 # Load the dataset
 df_bu = pd.read_csv('data.csv', delimiter=';')
 
-# Filter the dataset
+## Filter the dataset
 lulus_spesialisasi = df_bu[df_bu['Remark Progress Belajar'] == 'Sudah Lulus Spesialisasi']
 
 # Calculate the percentage
@@ -494,19 +494,19 @@ percentage_table = pd.DataFrame({
     'Percentage Lulus (%)': percentage_lulus.values
 })
 
-# Display the table in Streamlit
-st.write("Percentage of Participants Who Have Completed Specialization by Unit Divisi/Nama AP/Yayasan")
-st.table(percentage_table)
+## Display the table in Streamlit
+#st.write("Percentage of Participants Who Have Completed Specialization by Unit Divisi/Nama AP/Yayasan")
+#st.table(percentage_table)
 
-# Visualize the table using a bar chart
-st.write("Visualization of Percentage of Participants Who Have Completed Specialization by Unit Divisi/Nama AP/Yayasan")
-plt.figure(figsize=(10, 6))
-plt.bar(percentage_table['Unit Divisi/Nama AP/Yayasan'], percentage_table['Percentage Lulus (%)'], color='skyblue')
-plt.xlabel('Unit Divisi/Nama AP/Yayasan')
-plt.ylabel('Percentage Lulus (%)')
-plt.title('Percentage of Participants Who Have Completed Specialization by Unit Divisi/Nama AP/Yayasan')
-plt.xticks(rotation=45, ha='right')
-st.pyplot(plt)
+## Visualize the table using a bar chart
+#st.write("Visualization of Percentage of Participants Who Have Completed Specialization by Unit Divisi/Nama AP/Yayasan")
+#plt.figure(figsize=(10, 6))
+#plt.bar(percentage_table['Unit Divisi/Nama AP/Yayasan'], percentage_table['Percentage Lulus (%)'], color='skyblue')
+#plt.xlabel('Unit Divisi/Nama AP/Yayasan')
+#plt.ylabel('Percentage Lulus (%)')
+#plt.title('Percentage of Participants Who Have Completed Specialization by Unit Divisi/Nama AP/Yayasan')
+#plt.xticks(rotation=45, ha='right')
+#st.pyplot(plt)
 
 
 ######################################
