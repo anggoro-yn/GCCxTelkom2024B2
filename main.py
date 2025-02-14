@@ -477,22 +477,22 @@ st.pyplot(plt)
 ######################################
 
 # Load the dataset
-df_bu = pd.read_csv('data.csv', delimiter=';')
+#df_bu = pd.read_csv('data.csv', delimiter=';')
 
 ## Filter the dataset
-lulus_spesialisasi = df_bu[df_bu['Remark Progress Belajar'] == 'Sudah Lulus Spesialisasi']
+#lulus_spesialisasi = df_bu[df_bu['Remark Progress Belajar'] == 'Sudah Lulus Spesialisasi']
 
 # Calculate the percentage
-total_participants = df_bu['Unit Divisi/Nama AP/Yayasan '].value_counts()
-lulus_participants = lulus_spesialisasi['Unit Divisi/Nama AP/Yayasan '].value_counts()
-percentage_lulus = (lulus_participants / total_participants) * 100
-percentage_lulus = percentage_lulus.fillna(0)  # Replace NaN with 0
+#total_participants = df_bu['Unit Divisi/Nama AP/Yayasan '].value_counts()
+#lulus_participants = lulus_spesialisasi['Unit Divisi/Nama AP/Yayasan '].value_counts()
+#percentage_lulus = (lulus_participants / total_participants) * 100
+#percentage_lulus = percentage_lulus.fillna(0)  # Replace NaN with 0
 
 # Create a DataFrame for the table
-percentage_table = pd.DataFrame({
-    'Unit Divisi/Nama AP/Yayasan': percentage_lulus.index,
-    'Percentage Lulus (%)': percentage_lulus.values
-})
+#percentage_table = pd.DataFrame({
+#    'Unit Divisi/Nama AP/Yayasan': percentage_lulus.index,
+#    'Percentage Lulus (%)': percentage_lulus.values
+#})
 
 ## Display the table in Streamlit
 #st.write("Percentage of Participants Who Have Completed Specialization by Unit Divisi/Nama AP/Yayasan")
